@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <title>Chat Anonymous</title>
+
+        <!-- Meta Tags -->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+
+        <!-- Search Engine Meta Tags -->
+        <meta name="title" content="Chat Anonymous"/>
+        <meta name="description" content="Chat and share files anonymously over the internet, safely and securely with no logs recorded and files only saved on our server for an hour."/>
+        <meta name="keywords" content="Chat Anonymous, Chat, Anonymous, File, Secure, No Log"/>
+        <meta name="copyright" content="Copyright of Froogo."/>
+
+        <!-- Social Media Meta Tags -->
+        <meta property="og:title" content="Chat Anonymous"/>
+        <!-- <meta property="og:image" content="https://chat.froogo.co.uk/img/logo.png"/> -->
+        <meta property="og:description" content="Chat and share files anonymously over the internet, safely and securely with no logs recorded and files only saved on our server for an hour."/>
+        <meta name="theme-color" content="#515151">
+    </head>
+    <body>
+        <div id="clock" hidden></div>
+
+        <form>
+            <input type="text" id="room" placeholder="Room"><br>
+            <input type="text" id="username" placeholder="Username"><br><br>
+            <!-- Google ReCaptcha v2 -->
+            <div class="g-recaptcha" data-sitekey="6LdYAXsUAAAAAPsr0zckBZWrqklKlyusUYVsVeC4" data-theme="dark" style="transform:scale(0.77);-webkit-transform:scale(0.77);transform-origin:0 0;-webkit-transform-origin:0 0;"></div>
+            <button type="button" id="connect">Connect</button><br><br><br><br><br>
+        </form>
+
+        <div id="chat" hidden>
+            <input type="text" id="message" placeholder="Message"><br><br>
+            <button type="button" id="send">Send</button>
+        </div>
+
+        <!-- JavaScript -->
+        <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+        <script type="text/javascript" src="https://www.google.com/recaptcha/api.js"></script>
+        <script type="text/javascript" src="/js/main.js?v51"></script>
+        <script type="text/javascript" src="/js/jquery.countdown.min.js"></script>
+        <script type="text/javascript">
+        selectedDate = new Date().valueOf() + 60 * 60 * 1000;
+
+        $('#clock').countdown(selectedDate.toString()).on('update.countdown', function(event) {
+            var format = '%S';
+            if(event.offset.totalMinutes > 0) {
+                format = '%M:' + format;
+            }
+            if(event.offset.totalHours > 0) {
+                format = '%-H:' + format;
+            }
+            $(this).html(event.strftime(format));
+        }).on('finish.countdown', function(event) {
+            $(this).html('Expired');
+        });
+        </script>
+    </body>
+</html>
